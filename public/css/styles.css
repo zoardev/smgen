@@ -1,0 +1,23 @@
+.header-account {
+    display: flex;
+    text-align: left;
+    color: #AEAEB2;
+    align-items: center;
+}
+
+.header-account > div:first-child {
+    margin-right: 10px;
+}
+
+.contract-list {
+    padding: 20px 0;
+}
+.contract-list .MuiPaper-root {
+    margin-top: 15px;
+}
+.request-form {
+    border: 2px solid #404756;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}

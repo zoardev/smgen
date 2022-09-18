@@ -1,0 +1,45 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.10.3",
+    "@emotion/react": "^11.10.0",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/icons-material": "^5.10.2",
+    "@mui/lab": "^5.0.0-alpha.99",
+    "@mui/material": "^5.10.2",
+    "@openzeppelin/contracts": "^4.7.3",
+    "@reduxjs/toolkit": "^1.8.3",
+    "@truffle/hdwallet-provider": "^2.0.13",
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^2.28.0",
+    "dotenv": "^16.0.0",
+    "ethers": "^5.7.0",
+    "moment": "^2.29.3",
+    "moralis": "^2.4.0",
+    "next": "latest",
+    "next-auth": "^4.10.3",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-redux": "^8.0.2",
+    "redux-persist": "^6.0.0",
+    "wagmi": "^0.6.5",
+    "web3": "^1.2.9",
+    "web3-eth-contract": "^1.7.4",
+    "web3-provider-engine": "~15.0.12",
+    "web3-utils": "^1.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "typescript": "4.6"
+  }
+}
