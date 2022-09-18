@@ -1,54 +1,50 @@
 import React, {useCallback} from "react";
 import {Checkbox, FormControlLabel, Grid, TextField, Typography} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "src/controller/hooks";
-import {updateAttribute} from "../../../controller/collectionContractSlice";
+import {
+    updateAttribute,
+    updatePayoutAddress,
+    updatePayoutPercentage
+} from "src/controller/collectionContractSlice";
 export default function ContractPayout() {
     const dispatch = useAppDispatch();
     const {form} = useAppSelector((state) => state.collectionContract)
-    const handleUpdateAttribute = useCallback((key: string, value: any) => {
-        dispatch(updateAttribute({key: key, value: value}));
-    }, [])
+
     return (
         <React.Fragment>
-            {
-                form.payoutAddresses.map((item, index) => {
-                    return <Grid container spacing={3}>
+
+                    <Grid container spacing={3}>
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                helperText={"This is the list of addresses who will be paid out from your contract. You can withdraw the MATIC in your contract at any time and it will be paid out according to the table defined here."}
-                                value={form.payoutAddresses[index].address}
+                                helperText={"This is address who has permission to withdraw token from your smart contract. This feature supports native token of selected chain."}
+                                value={form.payoutAddresses.address}
+                                onChange={(event) => dispatch(updatePayoutAddress(event.target.value))}
                                 required
-                                id={`payoutAddresses${index}`}
-                                name={`payoutAddresses${index}`}
+                                id={`payoutAddresses`}
+                                name={`payoutAddresses$`}
                                 label="Address"
                                 fullWidth
-                                autoComplete={`payoutAddresses${index}`}
+                                autoComplete={`payoutAddresses`}
                                 variant="standard"
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                value={form.payoutAddresses[index].percentage}
+                                value={form.payoutAddresses.percentage}
+                                onChange={(event) => dispatch(updatePayoutPercentage(parseFloat(event.target.value)))}
                                 required
-                                id={`percentage${index}`}
-                                name={`percentage${index}`}
+                                id={`percentage`}
+                                name={`percentage`}
                                 label="Percentage"
                                 fullWidth
-                                autoComplete={`percentage${index}`}
+                                autoComplete={`percentage`}
                                 variant="standard"
+                                type={"number"}
                             />
                         </Grid>
 
                     </Grid>
-                })
-            }
 
-            <Grid item xs={12}>
-                <FormControlLabel
-                    control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-                    label="Use this address for payment details"
-                />
-            </Grid>
         </React.Fragment>
     )
 }

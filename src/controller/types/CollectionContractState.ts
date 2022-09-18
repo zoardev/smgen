@@ -12,7 +12,7 @@ export type CollectionContractState = {
         tokenSupply: number,
         mintPrice: number,
         walletMintLimit: number
-        payoutAddresses: PayoutAddress[],
+        payoutAddresses: PayoutAddress,
         cid: string,
         folderName: string,
         ownerAddress: string,

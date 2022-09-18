@@ -13,7 +13,7 @@ export default function Constraints() {
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        helperText={"Specify the maximum number of NFTs that can be minted per transaction. This can be updated at any time after deployment."}
+                        helperText={"The limited number of NFTs that user can mint per transaction."}
                         value={form.mintPerTransaction}
                         onChange={(event) => handleUpdateAttribute("mintPerTransaction", event.target.value)}
                         required
@@ -28,7 +28,7 @@ export default function Constraints() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        helperText={"This is the total number of NFTs in your collection. You cannot change this once deployed."}
+                        helperText={"The total number of NFTs in your whole collection."}
                         required
                         value={form.tokenSupply}
                         onChange={(event) => handleUpdateAttribute("tokenSupply", event.target.value)}
@@ -43,7 +43,7 @@ export default function Constraints() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        helperText={"Set the base price (in «MATIC») of your NFTs. Type «0» if you want them to be free of charge. This can be updated at any time after deployment."}
+                        helperText={"Set the base price (in native token of selected chain, example: ETH, BNB, MATIC...) of your NFTs."}
                         required
                         value={form.mintPrice}
                         onChange={(event) => handleUpdateAttribute("mintPrice", event.target.value)}
@@ -58,7 +58,7 @@ export default function Constraints() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        helperText={"Specify the maximum number of NFTs that can be minted per wallet. This can be updated at any time after deployment."}
+                        helperText={"The limited number of NFTs that a wallet can mint"}
                         required
                         value={form.walletMintLimit}
                         onChange={(event) => handleUpdateAttribute("walletMintLimit", event.target.value)}

@@ -16,7 +16,7 @@ function SignIn() {
     const { signMessageAsync } = useSignMessage();
     const { push } = useRouter();
     const dispatch = useAppDispatch();
-    const { network, balance } = useAppSelector(state => state.account)
+    const { network, balance, chainId, address } = useAppSelector(state => state.account)
     const handleAuth = async () => {
         try {
             if (isConnected) {
@@ -43,6 +43,8 @@ function SignIn() {
 
             let provider = new ethers.providers.Web3Provider(window.ethereum);
             // @ts-ignore
+            await window.ethereum.request({ method: 'eth_accounts' });
+            // @ts-ignore
             await window.ethereum.enable();
             let network = await provider.getNetwork();
             let balance = await provider.getBalance(
@@ -63,7 +65,7 @@ function SignIn() {
         }
 
     };
-    const accountInfo = session ? <div className={"header-account"}>
+    const accountInfo = (network) ? <div className={"header-account"}>
         <div>
             <Avatar alt={network} sx={{ bgcolor: deepPurple[500], width: 24, height: 24 }} src={"/imgs/metamask.png"} />
         </div>
@@ -73,7 +75,7 @@ function SignIn() {
             }</div>
             <div>{
                 //@ts-ignore
-                session.user.address.slice(0, 3).concat("...").concat(session.user.address.slice(29, 32))
+                address.slice(0, 3).concat("...").concat(address.slice(29, 32))
             } ({ network })</div>
         </div>
 

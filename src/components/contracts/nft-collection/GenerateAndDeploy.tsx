@@ -26,7 +26,7 @@ export default function GenerateAndDeploy() {
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                     <h4 style={{letterSpacing: "1px"}}>Generate {form.name} Contract</h4>
-                    <p>Here you can generate and re-generate your contract. After it is generate you can then deploy!</p>
+                    <p>You need to generate smart contract before you can deploy it.</p>
                     <LoadingButton
                         loading={isGenerating}
                         loadingPosition="start"

@@ -18,10 +18,10 @@ const initialState: CollectionContractState = {
         tokenSupply: 100,
         mintPrice: 5,
         walletMintLimit: 10,
-        payoutAddresses: [{
+        payoutAddresses: {
             address: "",
             percentage: 5
-        }],
+        },
         cid: "",
         folderName: "metadata",
         ownerAddress: "",
@@ -39,8 +39,11 @@ export const collectionContractSlice = createSlice({
         updateAttribute: (state, action: PayloadAction<{key: string, value: any}> ) => {
             state.form[action.payload.key] = action.payload.value;
         },
-        updatePayoutAddress: (state, action: PayloadAction<{addresses: PayoutAddress[]}> ) => {
-            state.form.payoutAddresses = action.payload.addresses
+        updatePayoutAddress: (state, action: PayloadAction<string> ) => {
+            state.form.payoutAddresses.address = action.payload
+        },
+        updatePayoutPercentage: (state, action: PayloadAction<number> ) => {
+            state.form.payoutAddresses.percentage = action.payload
         },
         updateIsGenerating: (state, action: PayloadAction<boolean>) => {
             state.isGenerating = action.payload;
@@ -89,5 +92,5 @@ export const collectionContractSlice = createSlice({
 
 })
 
-export const {updateAttribute, updatePayoutAddress, updateIsGenerating, updateIsDeploying } = collectionContractSlice.actions;
+export const {updateAttribute, updatePayoutAddress, updatePayoutPercentage, updateIsGenerating, updateIsDeploying } = collectionContractSlice.actions;
 export default collectionContractSlice.reducer;

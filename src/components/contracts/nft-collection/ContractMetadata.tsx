@@ -13,7 +13,7 @@ export default function ContractMetadata() {
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        helperText={"This is the name of your project. It will appear wherever your collection is mentioned."}
+                        helperText={"This is the name of your collection (your smart contract). It will be displayed to users."}
                         value={form.name}
                         onChange={(event) => handleUpdateAttribute("name", event.target.value)}
                         required
@@ -27,7 +27,7 @@ export default function ContractMetadata() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
-                        helperText={"This is the token symbol for your projects token. For example: «MATIC», «NFT», «TKN»."}
+                        helperText={"The token symbol for your smart contract. For example: NFC, MKT, NC."}
                         required
                         value={form.tokenSymbol}
                         onChange={(event) => handleUpdateAttribute("tokenSymbol", event.target.value)}
@@ -41,7 +41,7 @@ export default function ContractMetadata() {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
-                        helperText={"This is the description of your project. You can change it anytime."}
+                        helperText={"This is the description of your NFT collection"}
                         required
                         value={form.description}
                         onChange={(event) => handleUpdateAttribute("description", event.target.value)}
@@ -55,7 +55,7 @@ export default function ContractMetadata() {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
-                        helperText={"This is the % royalties you will collect on secondary sales."}
+                        helperText={"The % royalties for NFT authors."}
                         value={form.royalty}
                         onChange={(event) => handleUpdateAttribute("royalty", event.target.value)}
                         id="royalty"
