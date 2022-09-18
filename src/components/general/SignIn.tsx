@@ -26,32 +26,38 @@ function SignIn() {
             const { account, chain } = await connectAsync({ connector: new MetaMaskConnector() });
 
             const userData = { address: account, chain: chain.id, network: 'evm' };
+            if (chain.id !== 9000) {
+                const { data } = await axios.post('/api/auth/request-message', userData, {
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                });
 
-            const { data } = await axios.post('/api/auth/request-message', userData, {
-                headers: {
-                    'content-type': 'application/json',
-                },
-            });
+                const message = data.message;
 
-            const message = data.message;
+                const signature = await signMessageAsync({ message });
 
-            const signature = await signMessageAsync({ message });
+                // redirect user after success authentication to '/user' page
+                const { url } = await signIn('credentials', { message, signature, redirect: false, callbackUrl: window.location.pathname });
+            }
 
-            // redirect user after success authentication to '/user' page
-            const { url } = await signIn('credentials', { message, signature, redirect: false, callbackUrl: window.location.pathname });
             let provider = new ethers.providers.Web3Provider(window.ethereum);
+            // @ts-ignore
+            await window.ethereum.enable();
             let network = await provider.getNetwork();
             let balance = await provider.getBalance(
                 account
             )
-            dispatch(updateAttribute({key: "network", value: network.name}))
+
+            dispatch(updateAttribute({key: "network", value: chain.id !== 9000 ? network.name : "Evmos Test"}))
+            dispatch(updateAttribute({key: "chainId", value: network.chainId}))
             dispatch(updateAttribute({key: "balance", value: balance._hex }))
             dispatch(updateAttribute({key: "address", value: account }))
             /**
              * instead of using signIn(..., redirect: "/user")
              * we get the url from callback and push it to the router to avoid page refreshing
              */
-            push(url);
+            push(window.location.pathname);
         } catch (e) {
             console.log("Cancel or Reject connect:", e);
         }

@@ -1,8 +1,8 @@
 import {ethers} from "ethers";
 
-export const deployContract = async (abi: any, bytecode: string) => {
+export const deployContract = async (abi: any, bytecode: string, chainId: number) => {
     try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum, 80001);
+        const provider = new ethers.providers.Web3Provider(window.ethereum, chainId);
         await provider.send("eth_requestAccounts", []);
         const signer = provider.getSigner();
         const factory = new ethers.ContractFactory(abi, bytecode, signer);

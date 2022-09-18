@@ -10,7 +10,8 @@ const initialState: Account = {
     network: "",
     balance: "",
     symbol: "",
-    address: ""
+    address: "",
+    chainId: 0
 }
 
 export const accountSlice = createSlice({

@@ -20,6 +20,7 @@ export const deployNFTCollectionContract = createAsyncThunk("contract/get-abi", 
         let contractAddress = await deployContract(
             abi,
             bytecode,
+            appState.account.chainId
         )
         return {
             result: true,
