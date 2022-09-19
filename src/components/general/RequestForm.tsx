@@ -29,7 +29,7 @@ export default function RequestForm() {
                 </Grid>
                 <Grid item xs={12} sm={2}>
                     <FormControl>
-                        <Button variant={"contained"} color={"info"}>Submit</Button>
+                        <Button variant={"outlined"}>Submit</Button>
                     </FormControl>
                 </Grid>
             </Grid>

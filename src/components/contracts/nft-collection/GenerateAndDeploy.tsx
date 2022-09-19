@@ -28,12 +28,13 @@ export default function GenerateAndDeploy() {
                     <h4 style={{letterSpacing: "1px"}}>Generate {form.name} Contract</h4>
                     <p>You need to generate smart contract before you can deploy it.</p>
                     <LoadingButton
+                        disabled={!account.address}
                         loading={isGenerating}
                         loadingPosition="start"
                         startIcon={<DataSaverOnIcon color={"action"} />}
                         variant="contained"
                         onClick={() => handleGenerate()}>
-                        Generate
+                        { account.address ? "Generate" : "Please Login with Metamask"}
                     </LoadingButton>
                 </Grid>
                 <Grid item xs={12}>
@@ -43,12 +44,13 @@ export default function GenerateAndDeploy() {
                         {contractAddress ?  <p>Deployed Contract Address: <span style={{fontStyle: "italic"}}>{contractAddress}</span></p> : <></>}
                     </Typography>
                     <LoadingButton
+                        disabled={!account.address}
                         loading={isDeploying}
                         loadingPosition="start"
                         startIcon={<ConstructionIcon  color={"action"} />}
                         variant="contained"
                         onClick={() => handleDeploy()}>
-                        Deploy
+                        { account.address ? "Deploy" : "Please Login with Metamask" }
                     </LoadingButton>
                 </Grid>
             </Grid>

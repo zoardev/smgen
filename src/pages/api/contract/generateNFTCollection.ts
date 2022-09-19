@@ -21,7 +21,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             ownerAddress,
             contractFile
         } = req.body;
-        console.log( req.body)
         const userDir = path.resolve(process.cwd(), `custom_contracts/${ownerAddress}`);
         if (!fs.existsSync(userDir)) {
             fs.mkdirSync(userDir);
