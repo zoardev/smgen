@@ -17,6 +17,7 @@ import { createClient, configureChains, defaultChains, WagmiConfig } from 'wagmi
 import { publicProvider } from 'wagmi/providers/public';
 import { SessionProvider } from 'next-auth/react';
 import Footer from "../components/general/Footer";
+import {gtmBody, gtmHeader} from "../libs/gtm";
 
 
 const { provider, webSocketProvider } = configureChains(defaultChains, [publicProvider()]);
@@ -41,6 +42,7 @@ export default function MyApp(props: MyAppProps) {
             <Head>
                 <meta name="viewport" content="initial-scale=1, width=device-width" />
                 <link rel={"stylesheet"} href={"/css/styles.css"}/>
+                <script type="text/javascript" dangerouslySetInnerHTML={{__html: gtmHeader}}/>
             </Head>
             <ThemeProvider theme={theme}>
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -70,6 +72,7 @@ export default function MyApp(props: MyAppProps) {
                     </PersistGate>
                 </Provider>
             </ThemeProvider>
+                <div dangerouslySetInnerHTML={{__html: gtmBody}}/>
             </React.Fragment>
         </CacheProvider>
     );
