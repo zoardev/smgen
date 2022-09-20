@@ -57,8 +57,8 @@ export default function PreBuiltList({router}) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.name} onClick={() => handleClickOnRow(row.key)}>
+                        {rows.map((row, index) => (
+                            <TableRow key={row.name} onClick={() => handleClickOnRow(row.key)} sx={{cursor:  ([0,1].indexOf(index) !== -1 ? "pointer" : "default")}}>
                                 <TableCell component="th" scope="row" sx={{letterSpacing: "1px"}}>
                                     <strong>{row.name}</strong>
                                 </TableCell>

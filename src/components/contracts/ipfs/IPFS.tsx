@@ -22,7 +22,7 @@ export default function IPFS() {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Get started</Button>
+                <Button size="small" onClick={() => window.open("https://ipfs.tech/", "_blank")}>Get started</Button>
             </CardActions>
         </Card>
     );

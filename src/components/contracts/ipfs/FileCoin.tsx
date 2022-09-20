@@ -20,7 +20,7 @@ export default function FileCoin() {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Get started</Button>
+                <Button size="small"  onClick={() => window.open("https://hackathons.filecoin.io/", "_blank")}>Get started</Button>
             </CardActions>
         </Card>
     );
