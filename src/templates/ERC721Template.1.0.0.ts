@@ -27,14 +27,12 @@ contract NFTCollection is ERC721, PullPayment, ERC2981 {
     Counters.Counter private currentTokenId;
 
     uint256 public constant TOTAL_SUPPLY = ${tokenSupply};
+    uint8 public constant ROYALTY = ${royalty};
+    uint8 public constant MINT_PER_TRANSACTION = ${mintPerTransaction};
+    uint256 public constant MINT_PRICE = ${mintPrice} * 1e18;
+    uint256 public constant WALLET_MINT_LIMIT = ${walletMintLimit};
     string public constant CID = "${cid}";
     string public constant METADATA_FOLDER = "${folderName}";
-
-    uint8 public royalty = ${royalty};
-    uint8 public mintPerTransaction = ${mintPerTransaction};
-    uint256 public mintPrice = ${mintPrice} * 1e18;
-    uint256 public walletMintLimit = ${walletMintLimit};
-
     string public baseTokenURI = "";
     constructor() ERC721("${name}", "${tokenSymbol}") {
         baseTokenURI = "";
@@ -46,45 +44,19 @@ contract NFTCollection is ERC721, PullPayment, ERC2981 {
         return super.supportsInterface(interfaceId);
     }
 
-    function setRoyalty(uint8 _royalty) public onlyOwner returns (uint8) {
-        royalty = _royalty;
-        return _royalty;
-    }
-
-    function setMintPerTransaction(uint8 _mintPerTransaction) public onlyOwner returns (uint8) {
-        mintPerTransaction = _mintPerTransaction;
-        return _mintPerTransaction;
-    }
-
-    function setMintPrice(uint256 _mintPrice) public onlyOwner returns (uint256) {
-        mintPrice = _mintPrice;
-        return _mintPrice;
-    }
-
-    function setWalletMintLimit(uint256 _walletMintLimit) public onlyOwner returns (uint256) {
-        walletMintLimit = _walletMintLimit;
-        return _walletMintLimit;
-    }
-
-    function setBaseTokenURI(string _baseTokenURI) public onlyOwner returns (string) {
-        baseTokenURI = _baseTokenURI;
-        return _baseTokenURI;
-    }
-
-
     modifier isNotWalletMintLimit(uint256 numberToMint) {
         uint256 balances = balanceOf(msg.sender);
-        require(balances + numberToMint <= walletMintLimit, "Exceeds maximum supply");
+        require(balances + numberToMint <= WALLET_MINT_LIMIT, "Exceeds maximum supply");
         _;
     }
 
     modifier isEnoughMintPrice(uint256 numberToMint) {
-        require(msg.value >= mintPrice * numberToMint, "Not enough token sent: check price.");
+        require(msg.value >= MINT_PRICE * numberToMint, "Not enough token sent: check price.");
         _;
     }
 
     modifier isValidNumberToMint(uint256 numberToMint) {
-        require(numberToMint <= mintPerTransaction, "Exceeds maximum number per transaction.");
+        require(numberToMint <= MINT_PER_TRANSACTION, "Exceeds maximum number per transaction.");
         _;
     }
 
@@ -112,12 +84,12 @@ contract NFTCollection is ERC721, PullPayment, ERC2981 {
     returns (uint256[] memory)
     {
         uint256[] memory listOfMintIds = new uint256[](numberToMint);
-        for (uint256 i; i < numberToMint; i++) {
+        for(uint256 i; i < numberToMint; i++){
             currentTokenId.increment();
             uint256 newItemId = currentTokenId.current();
             _safeMint( to, newItemId);
             listOfMintIds[i] = newItemId;
-            _setTokenRoyalty(newItemId, royaltyReceiver, royalty);
+            _setTokenRoyalty(newItemId, royaltyReceiver, ROYALTY);
         }
         return listOfMintIds;
     }
