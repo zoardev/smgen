@@ -24,7 +24,7 @@ function createData(
 
 const rows = [
     createData("", 'NFT Collection',"NFTCollection", "ERC721 mintable NFTs", "1.0.0", <Button variant={"outlined"}>zoar.dev</Button>, <CheckCircleOutlineIcon aria-label={"ready"} color={"success"} />),
-    createData("", 'NFT Marketplace',"NFTCollection1", "Marketplace for ERC721/ERC1155 NFTs", "1.0.0", <Button variant={"outlined"}>zoar.dev</Button>,  <CheckCircleOutlineIcon aria-label={"ready"} color={"success"} />),
+    createData("", 'NFT Marketplace',"NFTCollection1", "Marketplace for ERC721/ERC1155 NFTs", "1.0.0", <Button variant={"outlined"}>zoar.dev</Button>,   <PendingIcon color={"info"} />),
     createData("", 'NFT Drop', "NFTCollection2","One NFT, one owner", "1.0.0", <Button variant={"outlined"}>zoar.dev</Button>,  <PendingIcon color={"info"} />),
     createData("", 'SocialFi', "SocialFi","A set of smart contracts implementing social finance", "1.0.0", <Button variant={"outlined"}>zoar.dev</Button>,  <PendingIcon color={"info"} />),
     createData("", 'Vote', "NFTCollection3","On-chain ERC20-based voting", "1.0.0", <Button variant={"outlined"}>zoar.dev</Button>,  <PendingIcon color={"info"} />),
