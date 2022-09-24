@@ -50,6 +50,7 @@ const ResponsiveAppBar = () => {
 
                         </IconButton>
                         <IconButton
+                            onClick={() => window.open("https://github.com/zoardev", "_blank")}
                             sx={{display: { xs: 'none', sm: "inline-flex"}}}
                             size="large" aria-label="show 4 new mails" color="inherit">
 
@@ -57,6 +58,7 @@ const ResponsiveAppBar = () => {
 
                         </IconButton>
                         <IconButton
+                            onClick={() => window.open("https://twitter.com/zoar_dev", "_blank")}
                             sx={{display: { xs: 'none', sm: "inline-flex"}}}
                             size="large"
                             aria-label="show 17 new notifications"
@@ -65,6 +67,7 @@ const ResponsiveAppBar = () => {
                             <TwitterIcon />
                         </IconButton>
                         <IconButton
+                            onClick={() => window.open("https://www.youtube.com/channel/UCho-6CSIfN0aDq7WZR4Du1A", "_blank")}
                             sx={{display: { xs: 'none', sm: "inline-flex"}}}
                             size="large"
                             aria-label="show 17 new notifications"
